@@ -15,15 +15,6 @@
     color: #a6a6a6;
     font-weight: bold;
   }
-
-  span {
-    font-size: 12px;
-    color: #fff;
-    font-weight: bold;
-    background-color: #f00;
-    border-radius: 16px;
-    padding: 4px;
-  }
 }
 
 .presentation {
@@ -43,23 +34,4 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
-  input {
-    background-color: #a6a6a6;
-    height: 20px;
-    margin-bottom: 8px;
-    border-radius: 4px;
-    color: #000;
-    text-align: center;
-  }
-
-  button {
-    background-color: #a6a6a6;
-    border: none;
-    border-radius: 4px;
-    color:#c95050;
-    width: 120px;
-    height: 20px;
-    margin-bottom: 16px;
-  }
 }

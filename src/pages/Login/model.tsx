@@ -25,7 +25,8 @@ function useLoginModel() {
     setPassword(password);
   };
 
-  const handleLoginButton = (email: string, password: string) => {
+  const handleLoginButton = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
     try {
       setIsLoading(true);
       setErrorMessage("");

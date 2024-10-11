@@ -1,0 +1,45 @@
+.dragon-info-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-width: 200px; 
+  width: 400px;
+  border-radius: 8px;
+  border: 4px solid #000;
+  background-color: #080808de;
+  padding: 40px;
+}
+
+.item-icon-info {
+  width: 80px;
+  height: 80px;
+  filter: invert();
+  margin-right: 16px;
+}
+
+.dragon-about-info {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.dragon-info-info {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.dragon-name-info {
+  text-align: left;
+}
+
+.dragon-type {
+  text-align: left;
+}
+
+.dragon-created-at {
+  font-size: 10px;
+  width: 180px;
+  margin-left: auto;
+}

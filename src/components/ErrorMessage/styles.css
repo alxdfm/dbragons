@@ -1,0 +1,14 @@
+@keyframes open-error {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.error-message-component {
+  font-size: 12px;
+  color: #fff;
+  font-weight: bold;
+  background-color: #f00;
+  border-radius: 16px;
+  padding: 4px;
+  animation: open-error 1s ease-in;
+}

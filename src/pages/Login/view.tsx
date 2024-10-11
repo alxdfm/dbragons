@@ -1,3 +1,6 @@
+import Button from "../../components/Button";
+import ErrorMessage from "../../components/ErrorMessage";
+import Input from "../../components/Input";
 import Spinner from "../../components/Spinner";
 import useLoginModel from "./model";
 import "./styles.css";
@@ -19,18 +22,15 @@ function LoginView({
         </div>
         <p>Bem vindo ao DbRAGONS!</p>
       </div>
-      <div className="inputs">
-        <input value={email} onChange={(e) => handleEmail(e.target.value)} />
-        <input
-          value={password}
-          type="password"
-          onChange={(e) => handlePassword(e.target.value)}
+      <form className="inputs" onSubmit={(event) => handleLoginButton(event)}>
+        <Input value={email} onChange={handleEmail} />
+        <Input value={password} type="password" onChange={handlePassword} />
+        <Button
+          content={isLoading ? <Spinner /> : "Fazer login"}
+          type="submit"
         />
-        <button onClick={() => handleLoginButton(email, password)}>
-          {isLoading ? <Spinner /> : "Fazer login"}
-        </button>
-        {errorMessage ? <span>{errorMessage}</span> : null}
-      </div>
+        {errorMessage ? <ErrorMessage message={errorMessage} /> : null}
+      </form>
     </div>
   );
 }
