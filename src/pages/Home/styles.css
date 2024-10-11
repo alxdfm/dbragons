@@ -1,0 +1,13 @@
+.container-home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 600px;
+  min-width: 200px; 
+  width: 400px;
+  border-radius: 8px;
+  border: 4px solid #000;
+  background-color: #080808de;
+
+}

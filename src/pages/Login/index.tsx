@@ -1,5 +1,9 @@
+import useLoginModel from "./model";
+import LoginView from "./view";
+
 function Login() {
-  return <>Hello world</>;
+  const loginModel = useLoginModel();
+  return <LoginView {...loginModel} />;
 }
 
 export default Login;
