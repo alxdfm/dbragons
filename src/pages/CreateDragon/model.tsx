@@ -31,8 +31,23 @@ function useCreateDragonModel() {
     setHistories(histories);
   };
 
+  const validateInputs = () => {
+    if (!name || !type || !histories) {
+      setErrorMessage(
+        `É necessário preencher os campos ${!name ? "nome" : ""} ${
+          !type ? "tipo" : ""
+        } ${!histories ? "história" : ""}.`
+      );
+      return true;
+    }
+  };
+
   const handleCreateButton = (event: { preventDefault: () => void }) => {
     event.preventDefault();
+
+    if (validateInputs()) {
+      return;
+    }
 
     try {
       setIsLoading(true);
@@ -44,8 +59,6 @@ function useCreateDragonModel() {
     } catch (error) {
       console.warn(error);
       setErrorMessage("Falha ao criar dragão!");
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -58,6 +71,8 @@ function useCreateDragonModel() {
     histories,
     navigate,
     handleCreateButton,
+    isLoading,
+    errorMessage,
   };
 }
 

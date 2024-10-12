@@ -28,6 +28,7 @@ function LoginView({
         <Button
           content={isLoading ? <Spinner /> : "Fazer login"}
           type="submit"
+          disabled={isLoading}
         />
         {errorMessage ? <ErrorMessage message={errorMessage} /> : null}
       </form>

@@ -14,6 +14,7 @@ type DragonType = {
 function useHomeModel() {
   const [dragons, setDragons] = useState<DragonType[]>([]);
   const [errorMessage, setErrorMessage] = useState("");
+  const [deletingId, setDeletingId] = useState("");
 
   const dragonsService = useMemo(() => new DragonsService(), []);
 
@@ -32,13 +33,14 @@ function useHomeModel() {
   };
 
   const deleteDragon = (id: string | number) => {
+    setDeletingId(String(id));
     dragonsService
       .deleteDragonById(id)
       .then(() => getDragons())
       .catch((error) => setErrorMessage(error.message));
   };
 
-  return { dragons, errorMessage, deleteDragon, navigate };
+  return { dragons, errorMessage, deleteDragon, navigate, deletingId };
 }
 
 export default useHomeModel;

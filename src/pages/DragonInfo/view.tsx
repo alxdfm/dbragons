@@ -64,7 +64,12 @@ function DragonInfoView({
             </div>
           </div>
           {isEditing ? (
-            <Button content="Salvar" type="button" onClick={onClickSave} />
+            <Button
+              content="Salvar"
+              type="button"
+              onClick={onClickSave}
+              disabled={isLoading}
+            />
           ) : (
             <Button
               content="Editar"

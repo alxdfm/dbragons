@@ -9,6 +9,7 @@ function HomeView({
   dragons,
   deleteDragon,
   navigate,
+  deletingId,
 }: ReturnType<typeof useHomeModel>) {
   return (
     <div className="container-home">
@@ -25,16 +26,20 @@ function HomeView({
           </div>
           <h1>Dragões:</h1>
           <div>
-            {dragons.map((dragon) => (
-              <DragonCard
-                id={dragon.id}
-                createdAt={dragon.createdAt}
-                name={dragon.name}
-                type={dragon.type}
-                key={dragon.id}
-                deleteDragon={deleteDragon}
-              />
-            ))}
+            {dragons.map((dragon) =>
+              dragon.id === deletingId ? (
+                <Spinner />
+              ) : (
+                <DragonCard
+                  id={dragon.id}
+                  createdAt={dragon.createdAt}
+                  name={dragon.name}
+                  type={dragon.type}
+                  key={dragon.id}
+                  deleteDragon={deleteDragon}
+                />
+              )
+            )}
           </div>
         </>
       )}
