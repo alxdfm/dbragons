@@ -12,3 +12,13 @@ yarn
 ```
 yarn dev
 ```
+
+### Credenciais
+Para acessar o projeto através do login é o email:
+```
+teste@mail.com
+```
+E a senha
+```
+12345678
+```
