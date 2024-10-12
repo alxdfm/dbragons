@@ -3,7 +3,7 @@ import DragonsService from "../../services/dragons";
 import { useNavigate, useParams } from "react-router-dom";
 import { checkAuth } from "../../utils/check-auth";
 
-type DragonInfoType = {
+export type DragonInfoType = {
   name: string;
   type: string;
   histories?: string | [];
@@ -14,6 +14,7 @@ function useDragonInfoModel() {
   const [dragon, setDragon] = useState<DragonInfoType | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   const navigate = useNavigate();
   const { id } = useParams();
@@ -22,20 +23,58 @@ function useDragonInfoModel() {
 
   useEffect(() => {
     checkAuth(navigate);
-    setIsLoading(true);
+    getDragon();
+  }, [dragonsService, id, navigate]);
 
+  const toggleEdit = () => {
+    setIsEditing(!isEditing);
+  };
+
+  const getDragon = () => {
     dragonsService
       .getDragonById(id!)
       .then((response) => setDragon(response))
       .catch((error) => setErrorMessage(error.message));
-    setIsLoading(false);
-  }, [dragonsService, id, navigate]);
+  };
+
+  const handleChangeDragonName = (value: string) => {
+    setDragon((prev) => {
+      return prev && { ...prev, name: value };
+    });
+  };
+
+  const handleChangeDragonType = (value: string) => {
+    setDragon((prev) => {
+      return prev && { ...prev, type: value };
+    });
+  };
+
+  const onClickSave = () => {
+    try {
+      setIsLoading(true);
+      dragonsService
+        .updateDragonById(id!, dragon!)
+        .then(() => getDragon())
+        .catch((error) => setErrorMessage(error.message));
+    } catch (error) {
+      console.warn(error);
+      setErrorMessage("Falha ao editar dragão!");
+    } finally {
+      setIsLoading(false);
+      setIsEditing(false);
+    }
+  };
 
   return {
     dragon,
     errorMessage,
     isLoading,
+    isEditing,
     navigate,
+    handleChangeDragonName,
+    handleChangeDragonType,
+    toggleEdit,
+    onClickSave,
   };
 }
 

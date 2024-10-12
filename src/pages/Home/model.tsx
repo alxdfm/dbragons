@@ -14,7 +14,6 @@ type DragonType = {
 function useHomeModel() {
   const [dragons, setDragons] = useState<DragonType[]>([]);
   const [errorMessage, setErrorMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
 
   const dragonsService = useMemo(() => new DragonsService(), []);
 
@@ -22,10 +21,7 @@ function useHomeModel() {
 
   useEffect(() => {
     checkAuth(navigate);
-
-    setIsLoading(true);
     getDragons();
-    setIsLoading(false);
   }, [dragonsService]);
 
   const getDragons = () => {
@@ -42,7 +38,7 @@ function useHomeModel() {
       .catch((error) => setErrorMessage(error.message));
   };
 
-  return { dragons, errorMessage, isLoading, deleteDragon };
+  return { dragons, errorMessage, deleteDragon, navigate };
 }
 
 export default useHomeModel;
